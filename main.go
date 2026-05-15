@@ -49,7 +49,7 @@ func (m *Medicine) GetShelfLife() int {
 	return m.shelfLife
 }
 
-// Setters
+
 func (m *Medicine) SetName(name string) error {
 	if name == "" {
 		return errors.New("El nombre no puede estar vacío")
@@ -78,12 +78,12 @@ func (m *Medicine) SetShelfLife(shelfLife int) error {
 	return nil
 }
 
-// Método para calcular fecha de caducidad
+
 func (m *Medicine) ExpirationDate() time.Time {
 	return m.manufactureDate.AddDate(0, m.shelfLife, 0)
 }
 
-// ================= TABLET =================
+
 type Tablet struct {
 	*Medicine
 	dosePerTablet  float64
@@ -119,7 +119,6 @@ func (t *Tablet) ShowDetails() {
 	fmt.Println()
 }
 
-// ================= SYRUP =================
 type Syrup struct {
 	*Medicine
 	volume float64
@@ -155,16 +154,15 @@ func (s *Syrup) ShowDetails() {
 	fmt.Println()
 }
 
-// ================= MAIN =================
 func main() {
 	date1, _ := time.Parse("2006-01-02", "2025-01-10")
 	date2, _ := time.Parse("2006-01-02", "2025-03-15")
 
-	// Inventario de tabletas
+
 	tablet1, _ := NewTablet("Paracetamol", "Bayer", date1, 24, 500, false)
 	tablet2, _ := NewTablet("Ibuprofeno", "Pfizer", date2, 18, 400, true)
 
-	// Inventario de jarabes
+	
 	syrup1, _ := NewSyrup("Jarabe para la Tos", "MK", date1, 12, 120, "Cereza")
 	syrup2, _ := NewSyrup("Vitamina C", "Genfar", date2, 10, 150, "Naranja")
 
@@ -186,7 +184,7 @@ func main() {
 	tablet1.SetName("Paracetamol Extra Forte")
 	fmt.Println("Nuevo nombre:", tablet1.GetName())
 
-	// Mostrar fechas de caducidad
+	
 	fmt.Println("\n=== FECHAS DE CADUCIDAD ===")
 	for _, t := range tablets {
 		fmt.Printf("%s caduca el: %s\n", t.GetName(), t.ExpirationDate().Format("2006-01-02"))
